@@ -1,4 +1,4 @@
-#include "6.hpp"
+#include "67.hpp"
 #include <string>
 
 
@@ -15,24 +15,37 @@ int main() {
     b.insertTeam("Team G");
     b.insertTeam("Team H");
     b.insertTeam("Team I");
+//1
+    b.matching();
+    b.printTeams();
+    cout<<endl;
+    b.printPoint();
+    cout<<endl;
+    b.update();
+//2
+    b.matching();
+    cout<<endl;
+    b.printPoint();
+    cout<<endl;
+    b.update();
+//3
+    b.matching();
+    cout<<endl;
+    b.printPoint();
+    cout<<endl;
+    b.update();
 
-    b.play();
-    b.printTeams();
-    cout<<endl;
-    b.printPoint();
-    cout<<endl;
     b.update();
     cout<<endl;
-    b.printTeams();
-    cout<<endl;
-    b.printPoint();
-    cout<<endl;
-    b.update();
-    cout<<endl;
-    b.printTeams();
-    cout<<endl;
-    b.printPoint();
-    b.update();
-    cout<<endl;
-    cout<<endl;
+    b.printQualify();
+    b.printSemiFinal();
+    b.printFinal();
+
+
+
+
+    
+   
+
+    return 0;
 }
