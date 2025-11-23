@@ -3,6 +3,7 @@
 #include <queue>
 #include <cstdlib> 
 #include <ctime> 
+#include <vector>
 
 using namespace std;
 
@@ -26,7 +27,18 @@ class Bracket{
     int maxTeam = 8 ;
     int match = 1;
     int round = 1;
+    vector<Node*> allMatches;
     public :
+
+    void input(){
+        for (int i=0;i<8;i++){
+            string nam;
+            cout<<"Enter name : ";
+            cin>>nam;
+            insertTeam(nam);
+        }
+        
+    }
 
     void insertTeam(const string& name){
         if (currentTeam>=maxTeam){
@@ -57,6 +69,7 @@ class Bracket{
             parent->right = temp.front();
             temp.pop();
             matchList.push(parent);
+            allMatches.push_back(parent);
         }
         
 
@@ -70,6 +83,32 @@ class Bracket{
             finall=teamList;
         }
 
+    }
+
+    void all(){
+        cout << "All Matches :" << endl;
+        for (size_t i = 0; i < allMatches.size(); i++) {
+        Node* match = allMatches[i]; 
+        cout << match->left->team << " vs " << match->right->team << endl;
+        }
+        cout<<endl;
+
+    }
+
+    void atMatch(int x){
+        if (x>7||x<1){
+            cout<<"We have only 7 matches or less than"<<endl;
+            return;
+        }
+        cout << "Matche "<< x << endl;
+        Node* match = allMatches[x-1]; 
+        cout << match->left->team << " vs " << match->right->team << endl;
+        if(match->left->point > match->right->point){
+            cout<<match->left->team<<" won"<<endl;
+        }else{
+            cout<<match->right->team<<" won"<<endl;
+        }
+        cout<<endl;
     }
 
     void printTeams(){
@@ -137,12 +176,13 @@ class Bracket{
             return;
         }
         queue<Node*> temp = matchList;
-        cout<<"Round "<<round<<endl;
+        cout<<"=== Round "<<round<<" ==="<<endl;
         while(!temp.empty()){
             Node* temp2 = temp.front();
             temp.pop();
             cout<< temp2->left->team << " : "<<temp2->left->point<<endl;
             cout<< temp2->right->team << " : " <<temp2->right->point<<endl;
+            cout<<endl;
         }
         round++;
     }
@@ -152,6 +192,8 @@ class Bracket{
                 cout << "Tie! Rematch: "<<endl;
                 team1->point=rand()%20;
                 team2->point=rand()%20;
+                cout<<team1->team<<" : "<<team1->point<<endl;
+                cout<<team2->team<<" : "<<team2->point<<endl;
             }
        if (team1->point > team2->point){
         next.push(team1);
@@ -166,7 +208,7 @@ class Bracket{
             return;
         }
 
-        if (teamList.size() == 1) { // only one team left
+        if (teamList.size() == 1) { 
             cout << "Winner: " << teamList.front()->team << endl;
             return;
         }
@@ -181,6 +223,33 @@ class Bracket{
         matchList = next;
         teamList = next;
     }
+
+    void toEnd(){
+        //1
+        matching();
+        printTeams();
+        cout<<endl;
+        printPoint();
+        cout<<endl;
+        update();
+        //2
+        matching();
+        cout<<endl;
+        printPoint();
+        cout<<endl;
+        update();
+        //3
+        matching();
+        cout<<endl;
+        printPoint();
+        cout<<endl;
+        update();
+
+        update();
+        cout<<endl;
+        
+    }
     
+   
   
 };

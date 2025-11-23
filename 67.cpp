@@ -15,31 +15,14 @@ int main() {
     b.insertTeam("Team G");
     b.insertTeam("Team H");
     b.insertTeam("Team I");
-//1
-    b.matching();
-    b.printTeams();
-    cout<<endl;
-    b.printPoint();
-    cout<<endl;
-    b.update();
-//2
-    b.matching();
-    cout<<endl;
-    b.printPoint();
-    cout<<endl;
-    b.update();
-//3
-    b.matching();
-    cout<<endl;
-    b.printPoint();
-    cout<<endl;
-    b.update();
-
-    b.update();
-    cout<<endl;
+    // b.input();
+    b.toEnd();
     b.printQualify();
     b.printSemiFinal();
     b.printFinal();
+    
+    // b.all();
+    // b.atMatch(5);
 
 
 
