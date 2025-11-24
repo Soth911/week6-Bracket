@@ -11,7 +11,9 @@ int main(){
     b.insertTeam("G");
     b.insertTeam("H");
 
-    b.play();        
+    b.play();   
+    b.pathQuery("A");   
+    b.lcaQuery("A","B");  
 
 
     return 0;
