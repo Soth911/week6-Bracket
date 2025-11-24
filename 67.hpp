@@ -4,6 +4,8 @@
 #include <cstdlib> 
 #include <ctime> 
 #include <vector>
+#include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -57,6 +59,31 @@ class Bracket{
             cout<<"No team yet!"<<endl;
             return;
         }
+
+        if (round<3){
+            // --- Step 1: extract queue into vector ---
+             vector<Node*> arr;
+             while (!teamList.empty()) {
+                 arr.push_back(teamList.front());
+                 teamList.pop();
+             }
+     
+             // --- Step 2: shuffle vector (randomize order) ---
+             random_device rd;
+             mt19937 g(rd());
+             shuffle(arr.begin(), arr.end(), g);
+     
+             // --- Step 3: rebuild teamList with shuffled teams ---
+             for (Node* t : arr) {
+                 teamList.push(t);
+             }
+
+        }
+
+
+        
+
+
 
         
         matchList = queue<Node*>(); 
@@ -118,6 +145,36 @@ class Bracket{
         }
         cout<<endl;
     }
+
+    void searchMatch(const string& what) {
+    bool found = false;
+
+    for (Node* match : allMatches) {
+
+
+        if (!match->left) continue;
+
+
+        if (match->right) {
+            if (match->left->team == what || match->right->team == what) {
+                cout << match->left->team << " vs " << match->right->team << endl;
+                found = true;
+            }
+        }
+
+        else {
+            if (match->left->team == what) {
+                cout << match->left->team << " gets a bye" << endl;
+                found = true;
+            }
+        }
+    }
+
+    if (!found) {
+        cout << "No match found for team: " << what << endl;
+    }
+}
+
 
     void printTeams(){
         if (matchList.empty()) {

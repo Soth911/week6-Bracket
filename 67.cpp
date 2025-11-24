@@ -14,7 +14,6 @@ int main() {
     b.insertTeam("Team F");
     b.insertTeam("Team G");
     b.insertTeam("Team H");
-    b.insertTeam("Team I");
     // b.input();
     b.toEnd();
     // b.printQualify();
@@ -23,9 +22,10 @@ int main() {
     
     b.all();
     b.atMatch(4);
+    b.searchMatch("Team G");
 
 
-
+ 
 
     
    
