@@ -224,15 +224,33 @@ class Bracket{
         }
     }
 
-    void lcaQuery(const string& a,const string& b){
+    Node* getLCA(Node* a, Node* b) {
+        if (!a || !b) return nullptr;
+
+        int depthA = 0, depthB = 0;
+        Node* tempA = a;
+        Node* tempB = b;
+        while (tempA) { depthA++; tempA = tempA->parent; }
+        while (tempB) { depthB++; tempB = tempB->parent; }
+
+        while (depthA > depthB) { a = a->parent; depthA--; }
+        while (depthB > depthA) { b = b->parent; depthB--; }
+
+        while (a != b) {
+            a = a->parent;
+            b = b->parent;
+        }
+
+        return a;
+    }
+
+    void lcaQuery(const string& a, const string& b){
         if (list.empty()){
             cout<<"No team yet!"<<endl;
             return;
         }
 
-        bool isfound = false;
-
-        Node* root = list.front();
+        Node* root = list.front(); // final winner/root
         Node* leaf1 = findPlayer(root,a);
         Node* leaf2 = findPlayer(root,b);
 
@@ -241,26 +259,16 @@ class Bracket{
             return;
         }
 
-        while(leaf1 != leaf2 && leaf1->parent && leaf2->parent){
-            leaf1=leaf1->parent;
-            leaf2=leaf2->parent;
-            if ((leaf1->parent==leaf2->parent)&&(leaf1->playerName==a)&&(leaf2->playerName==b)){
-                isfound = true;
-                break;
-            } 
-        }
-        if((leaf1->parent==leaf2->parent)&&(leaf1->playerName==a)&&(leaf2->playerName==b)){
-            Node* temp = leaf1->parent;
-            cout<<"\nMatch : "<<temp->left->matchId<<endl;
-            cout<<"Round : "<<temp->left->round<<endl;
-            cout<<temp->left->playerName<<" vs "<<temp->right->playerName<<endl;
+        Node* lca = getLCA(leaf1, leaf2);
+        if (!lca) {
+            cout << "LCA not found!" << endl;
+            return;
         }
 
-        if(!isfound){
-            cout<<"\nNot found "<<a<<" vs "<<b<<endl;
-        }
+        cout << "\nMatch : " << lca->left->matchId << endl;
+        cout << "Round : " << lca->left->round << endl;
+        cout << lca->left->playerName << " vs " << lca->right->playerName << endl;
     }
 
-    
 
 };
