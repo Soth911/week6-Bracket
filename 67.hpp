@@ -122,6 +122,26 @@ class Bracket{
 
     }
 
+    void lca(const string& a, const string& b){
+        bool found = false;
+
+        for (Node* match : allMatches) {
+            if (match->left && match->right){
+                if((match->left->team==a || match->right->team==a) && (match->left->team==b || match->right->team==b)){
+                    cout<<a<<" met "<<b<<endl;
+                    found = true;
+                }
+            }
+        
+
+        
+        }
+
+    if (!found) {
+        cout << "No match found for team " << a << " and " << b <<endl;
+    }
+    }
+
     void atMatch(int x){
         if (x>7||x<1){
             cout<<"We have only 7 matches or less than"<<endl;
@@ -173,6 +193,7 @@ class Bracket{
     if (!found) {
         cout << "No match found for team: " << what << endl;
     }
+    cout<<endl;
 }
 
 

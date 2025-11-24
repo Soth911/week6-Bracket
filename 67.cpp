@@ -23,6 +23,7 @@ int main() {
     b.all();
     b.atMatch(4);
     b.searchMatch("Team G");
+    b.lca("Team A","Team B");
 
 
  
