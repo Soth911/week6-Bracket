@@ -100,7 +100,15 @@ class Bracket{
             cout<<"We have only 7 matches or less than"<<endl;
             return;
         }
-        cout << "Matche "<< x << endl;
+
+        cout << "Match "<< x << endl;
+        if (x<5){
+            cout<<"Qualify match"<<endl;
+        }else if(x<7){
+            cout<<"Semi Final match"<<endl;
+        }else{
+            cout<<"Final match"<<endl;
+        }
         Node* match = allMatches[x-1]; 
         cout << match->left->team << " vs " << match->right->team << endl;
         if(match->left->point > match->right->point){

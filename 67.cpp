@@ -17,12 +17,12 @@ int main() {
     b.insertTeam("Team I");
     // b.input();
     b.toEnd();
-    b.printQualify();
-    b.printSemiFinal();
-    b.printFinal();
+    // b.printQualify();
+    // b.printSemiFinal();
+    // b.printFinal();
     
-    // b.all();
-    // b.atMatch(5);
+    b.all();
+    b.atMatch(4);
 
 
 
