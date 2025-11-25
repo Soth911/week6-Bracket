@@ -9,6 +9,7 @@ int main(){
     b.insertTeam("E");
     b.insertTeam("F");
     b.insertTeam("G");
+    b.insertTeam("H");
     
 
     b.play();   
