@@ -47,14 +47,6 @@ class Bracket{
             return;
         }
 
-        if(list.size()%2!=0){
-            Node* nAme = new Node;
-            nAme->playerName="BYE";
-            nAme->isLeaf=true;
-            list.push(nAme);
-            currentTeam++;
-        }
-
 
         int c=0;
         if(currentTeam<8){
