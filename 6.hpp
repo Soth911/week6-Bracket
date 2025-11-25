@@ -247,14 +247,10 @@ class Bracket{
     Node* getLCA(Node* a, Node* b) {
         if (!a || !b) return nullptr;
 
-        int depthA = 0, depthB = 0;
+
         Node* tempA = a;
         Node* tempB = b;
-        while (tempA) { depthA++; tempA = tempA->parent; }
-        while (tempB) { depthB++; tempB = tempB->parent; }
-
-        while (depthA > depthB) { a = a->parent; depthA--; }
-        while (depthB > depthA) { b = b->parent; depthB--; }
+     
 
         while (a != b) {
             a = a->parent;
@@ -284,7 +280,7 @@ class Bracket{
             cout << "LCA not found!" << endl;
             return;
         }
-
+        cout<<"\nLCA of "<<a<<" and "<<b;
         cout << "\nMatch : " << lca->left->matchId << endl;
         cout << "Round : " << lca->left->round << endl;
         cout << lca->left->playerName << " vs " << lca->right->playerName << endl;
