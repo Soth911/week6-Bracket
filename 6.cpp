@@ -14,6 +14,7 @@ int main(){
     b.play();   
     b.pathQuery("A");   
     b.lcaQuery("A","B");  
+    b.printBracket() ;
 
 
     return 0;

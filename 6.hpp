@@ -282,5 +282,57 @@ class Bracket{
         cout << lca->left->playerName << " vs " << lca->right->playerName << endl;
     }
 
+    void printBracket() {
+        if (list.empty()) {
+            cout << "No bracket available!\n";
+            return;
+        }
+
+        Node* root = list.front();
+
+        queue<Node*> q;
+        q.push(root);
+
+        int currentRound = root->round; 
+
+        cout << "\n====== Full Bracket ======\n";
+
+        while (!q.empty()) {
+            Node* cur = q.front();
+            q.pop();
+
+            if (!cur->isLeaf && cur->left && cur->right) {
+
+            if (cur->round != currentRound) {
+                currentRound = cur->round;
+                cout << "==========================\n";
+            }
+
+            if (cur->round == 1) 
+                cout << "[Round 1] ";
+
+            else if (cur->round == 2)
+                cout << "[Round 2] ";
+
+            else if (cur->right->parent == root)
+                cout << "[Final] ";
+
+            else
+                cout << "[Round " << cur->round << "] ";
+
+            cout << cur->left->playerName << " (" << cur->left->point << ") vs "
+                 << cur->right->playerName << " (" << cur->right->point << ")  "
+                 << "winner: " << cur->playerName << endl;
+            }
+
+            if (cur->left) q.push(cur->left);
+            if (cur->right) q.push(cur->right);
+        }
+
+        cout << "==========================\n";
+        cout << "Champion: " << root->playerName << "\n";
+    }
+
+
 
 };
