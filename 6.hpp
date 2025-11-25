@@ -56,18 +56,18 @@ class Bracket{
         }
 
 
-        int c;
+        int c=0;
         if(currentTeam<8){
             c=maxTeam-currentTeam;
+            for (int i=0;i<c;i++){
+                Node* nAme = new Node;
+                nAme->playerName="BYE";
+                nAme->isLeaf=true;
+                list.push(nAme);
+                currentTeam++;
+            }
         }
 
-        for (int i=0;i<c;i++){
-            Node* nAme = new Node;
-            nAme->playerName="BYE";
-            nAme->isLeaf=true;
-            list.push(nAme);
-            currentTeam++;
-        }
 
 
         vector<Node*> arr;
