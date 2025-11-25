@@ -47,6 +47,13 @@ class Bracket{
             return;
         }
 
+        if(list.size()%2!=0){
+            Node* nAme = new Node;
+            nAme->playerName="BYE";
+            nAme->isLeaf=true;
+            list.push(nAme);
+        }
+
         vector<Node*> arr;
         while (!list.empty()) {
             arr.push_back(list.front());
@@ -70,6 +77,11 @@ class Bracket{
 
         queue<Node*> temp=list;
         while(!temp.empty()){
+            if(temp.front()->playerName=="BYE"){
+                temp.front()->point=0;
+                temp.pop();
+                continue;
+            }
             temp.front()->point=rand()%21;
             temp.pop();
         }
@@ -250,7 +262,7 @@ class Bracket{
             return;
         }
 
-        Node* root = list.front(); // final winner/root
+        Node* root = list.front(); 
         Node* leaf1 = findPlayer(root,a);
         Node* leaf2 = findPlayer(root,b);
 
